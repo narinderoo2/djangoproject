@@ -1,0 +1,84 @@
+{% extends 'linkfile.html' %}
+{% block title %} Search Page {% endblock %}
+{% load static %}
+{% block body %}
+
+<div class="col-sm-7">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="alert colour_banner">
+                <strong>Search results</strong>
+            </div>
+            <!--            search side-->
+            {% if search1|length < 1 %}
+            <p>No search result</p>
+            Your search query is: <b>{{query}} </b>did not match any NEWS related.
+            Suggestions:
+            <ul>
+                <li>Try different keyword.</li>
+                <li>Try more general keyword.</li>
+                <li>Try fewer keyword.</li>
+                <li>Go back to home.</li>
+            </ul>
+            {% endif %}
+            <!--            not keyword in search-->
+
+            {% for k in search1 %}
+            <div class=" text-center">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <img src="{{k.file_name.url}}" class="rounded" height="120" width="139" alt="Avatar">
+                    </div>
+                    <div class="col-sm-9 bg-light ">
+                        <a href="#"> <p>{{k.title}}</p></a>
+                        <p><small>{{k.post0|truncatechars:170}}</small></p>
+                        <p>{{k.pub_date}}</p>
+                    </div>
+                </div><br>
+            </div>
+            {% endfor %}
+            <div class="container">
+                {% if search1.has_other_pages %}
+                <ul class="pagination">
+                    {% if search1.has_previous %}
+                    <li class="page-item">
+                        <a href="?page={{ search1.previous_page_number }}" class="page-link">Previous</a>
+                    </li>
+                    {% else %}
+                    <li class="page-item disabled">
+                        <a href="" class="page-link"> Previous</a>
+                    </li>
+                    {% endif %}
+
+                    {% for i in search1.paginator.page_range %}
+                    {% if search1.number == i %}
+                    <li class="page-item active">
+                        <a href="" class="page-link"> {{i}}</a>
+                    </li>
+                    {% else %}
+                    <li class="page-item">
+                        <a href="?page={{i}}&query={{query}}" class="page-link"> {{i}}</a>
+<!--                        <a href="?page={{i}}{% if request.GET.query %}&query={{ request.GET.query }}{% endif %}-->
+<!--" class="page-link"> {{i}}</a>-->
+
+                    </li>
+                    {% endif %}
+                    {% endfor %}
+
+                    {% if search1.has_next %}
+                    <li class="page-item ">
+                        <a href="?query={{query}}/?page={{search1.next_page_number }}" class="page-link"> Next</a>
+                    </li>
+                    {% else %}
+
+                    <li class="page-item disabled">
+                        <a href="" class="page-link"> Next</a>
+                    </li>
+                    {% endif %}
+                </ul>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

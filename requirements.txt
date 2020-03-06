@@ -1,0 +1,14 @@
+asgiref==3.2.3
+Click==7.0
+Django==3.0.2
+django-bootstrap-static==4.2.1
+Flask==1.1.1
+future==0.18.2
+imutils==0.5.3
+itsdangerous==1.1.0
+Jinja2==2.10.3
+MarkupSafe==1.1.1
+pytz==2019.3
+somepackage==1.2.3
+sqlparse==0.3.0
+Werkzeug==0.16.0

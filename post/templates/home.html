@@ -1,0 +1,51 @@
+{% extends 'linkfile.html' %}
+{% block title %} rtnews center {% endblock %}
+{% load static %}
+{% block body %}
+
+<div class="col-sm-7">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="alert colour_banner">
+                <strong>IT Latest News</strong>
+            </div>
+            {% for k in news|slice:2 %}
+            <div class=" text-center">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <img src="{{k.file_name.url}}" class="rounded-circle" height="135" width="145" alt="Avatar">
+                    </div>
+                    <div class="col-sm-9 bg-light ">
+                        <a href="{{k.get_absolute_url}}"> <p>{{k.title}}</p></a>
+                        <p><small>{{k.post0|truncatechars:170}}</small></p>
+                        <small><p>{{k.pub_date}}    &nbsp;&nbsp;&nbsp;<a href="{{k.get_absolute_url}}"> continue reading...</a></p></small>
+                    </div>
+                </div><br>
+            </div>
+            {% endfor %}
+        </div>
+
+        {% for item in news1|slice:4 %}
+        <div class="col-sm-6">
+            <div class="alert colour_banner">
+                <strong>{{item.title|truncatechars:25}}</strong>
+            </div>
+            <div class="row no-gutters border rounded  flex-md-row mb-2 shadow-sm h-md-250 position-relative">
+                <img src="{{item.file_name.url}}" class="rounded" height="155" width="100%" alt="Avatar">
+                <div class="col p-4 d-flex flex-column position-static">
+                    <div class="mb-1 text-muted">{{item.pub_date}}</div>
+                    <p class="card-text mb-auto">{{item.post0|truncatechars:250}}</p>
+                    <a href="{{item.get_absolute_url}}"> Continue reading... </a>
+                </div>
+            </div>
+        </div>
+        {% if forloop.counter|divisibleby:2 %}
+    </div><div class="row my-2">
+
+    {% endif %}
+
+    {% endfor %}
+</div>
+</div>
+
+{% endblock %}

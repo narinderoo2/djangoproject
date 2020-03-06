@@ -1,0 +1,45 @@
+{% extends 'linkfile.html' %}
+{% block title %} rtnews center {% endblock %}
+{% load static %}
+{% block body %}
+<div class="col-sm-7">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="alert colour_banner">
+                <strong>Registration Form</strong>
+            </div>
+            <form  method="POST">
+                {% csrf_token %}
+                <div class="form-group ">
+                    <div class="row">
+                        <div class="col">
+                            <label for="username">User Name:</label>
+                            <input type="text" class="form-control from-control-sm" id="username"
+                                   placeholder="Enter User Name" name="username" required>
+                        </div>
+                        <div class="col">
+                            <label for="uemail">Email:</label>
+                            <input type="email" class="form-control from-control-sm" id="uemail"
+                                   placeholder="Example@gamil.com" name="uemail" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="upassword">Password:</label>
+                    <input type="text" class="form-control from-control-sm" id="upassword" name="upassword" required>
+                </div>
+                <div class="form-group">
+                    <label for="repassword">Conform Password:</label>
+                    <input type="text" class="form-control from-control-sm" id="repassword" name="repassword" required>
+                </div>
+                <div class="from-group">
+                    <label for="uphone">Phone Number:</label>
+                    <input type="number" class="form-control from-control-sm" id="uphone" name="uphone" required>
+                </div>                <br>
+                <button type="submit" class="btn btn-info">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

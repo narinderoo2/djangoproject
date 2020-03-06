@@ -1,0 +1,269 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <title>{% block title %} {% endblock %}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css'%}">
+    <style>
+        a {
+         text-decoration: none;
+         color:red;
+          }
+        p{
+        text-align: justify;
+        }
+        h4{
+        color:red;
+        }
+        a:hover {
+        color: red;
+         }
+         a:link {
+        text-decoration: none;
+        }
+        .colour_banner{
+        color:white;
+        background-color:red;
+        }
+
+    </style>
+</head>
+<body>
+
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse ">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'home' %}" >Home</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="{% url 'contact'%}">Registration</a>
+                 </li>
+                <li class="nav-item ">
+                <a class="nav-link" href="{% url 'about'%}">About</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="#contact_me">Contact Me</a>
+                </li>
+
+<!--                User log in -->
+                {% if user.is_authenticated %}
+                <li class="nav-item ">
+                    <a class="nav-link" href="{% url 'logout'%}">Log Out</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="#">welcome {{request.user}}</a>
+                </li>
+                {% else %}
+                <li class="nav-item ">
+                    <a class="nav-link" href="{% url 'login'%}">Log In</a>
+                </li>
+                {% endif %}
+
+<!--                End of login logout function-->
+
+            </ul>
+        </div>
+        <div class="collapse navbar-collapse" id="navbar-right">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Facebook</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Google</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Twitter</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Instagram</a>
+                </li>
+
+            </ul>
+        </div>
+    </nav>
+</header>
+<div class="container my-2" style="color:red;">
+    <h1 ><strong>R.T. </strong></h1>BlogSite
+</div>
+<div class="container-fluid">
+    <nav class="navbar navbar-expand-md navbar-light  bg-light">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+
+                <li class="nav-item">
+                    <a class="nav-link text-danger " href="/"><strong>Home</strong></a>
+                </li>
+                <li class="nav-item {% block page/itactive %} {% endblock page/itactive %} ">
+                    <a class="nav-link" href="/page/it"><strong>IT </strong></a>
+                </li>
+                <li class="nav-item {% block page/webdevloperactive %} {% endblock page/webdevloperactive %}">
+                    <a class="nav-link" href="/page/webdevloper"><strong>Web Developer</strong></a>
+                </li>
+                <li class="nav-item {% block page/pythonactive %} {% endblock page/pythonactive %}">
+                    <a class="nav-link" href="/page/python"><strong>Python</strong></a>
+                </li>
+                <li class="nav-item {% block page/tkinteractive %} {% endblock page/tkinteractive %}">
+                    <a class="nav-link" href="/page/tkinter"><strong>Tkinter</strong></a>
+                </li>
+                <li class="nav-item {% block page/djangoactive %} {% endblock page/djangoactive %}">
+                    <a class="nav-link" href="/page/django"><strong>Django</strong></a>
+                </li>
+                <li class="nav-item {% block page/gamingactive %} {% endblock page/gamingactive %}">
+                    <a class="nav-link" href="/page/gaming"><strong>Gaming</strong></a>
+                </li>
+            </ul>
+            <form method="get" action="/search" class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" name="query" id="query" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+</div>
+<!--End of the nav bar for HEADER-->
+<div class="container-fluid" style="margin-top:5px">
+    <div class="row">
+        <div class="col-sm-2">
+            <div class=" alert  colour_banner">
+                <strong>SPONSOR</strong>
+            </div>
+            <p>This web site Sponsor by CIIT madam(django)</p>
+            <div  class="alert  colour_banner">
+                <strong>LABELS</strong>
+            </div>
+            <a href="/page/it"><div type="button" class="btn btn-secondary btn-block my-1 btn-md">IT</div></a>
+            <a href="/page/webdevloper"><div type="button" class="btn btn-secondary my-1 btn-block btn-md">Web Developer</div></a>
+            <a href="/page/python"><div type="button" class="btn btn-secondary my-1 btn-block btn-md">Python</div></a>
+            <a href="/page/django"> <div type="button" class="btn btn-secondary my-1 btn-block btn-md">Django</div></a>
+            <a href="/page/gaming"> <div type="button" class="btn btn-secondary my-1 btn-block btn-md">Gaming</div></a><br>
+
+            <div class="alert  colour_banner">
+                <strong>BLOG ARCHIVE</strong>
+            </div>
+            {% for post in news2|slice:8 %}
+            <div class="bg-light text-dark">
+            <a href="{{k.get_absolute_url}}"><p><small>{{post.title}}</small></p></a>
+            <p><small>{{post.pub_date}}</small></p>
+
+            </div>
+            {% endfor %}
+
+        </div>
+
+{% block body %} {% endblock %}
+
+        <div class="col-sm-3">
+            <div class="raw">
+                <div class="col-sm-12">
+                    <div class="alert colour_banner">
+                        <a href="#"><span class="text-white p-3"><strong> Latest Post</strong></span></a>
+                        <a href="#"><span class="text-white p-3"><strong> Video</strong></span></a>
+                    </div>
+                    {% for k in news2|slice:4 %}
+
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div class="well">
+                                    <img src="{{k.file_name.url}}" class="rounded" height="65" width="75" alt="Avatar">
+                                </div>
+                            </div>
+                            <div class="col-sm-9 bg-light ">
+                                <a href="{{k.get_absolute_url}}"><small><b>{{k.title}}</b></small></a>
+                                <p><small>{{k.post0|truncatechars:55}}</small></p>
+                            </div>
+                        </div><br>
+
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--footer start-->
+<footer class="container-fluid bg-dark text-white">
+    <div class="container-fluid p-3" style="margin-top:5px">
+        <div class="row">
+            <div class="col-sm-4">
+                <div class=" alert  colour_banner">
+                    <strong>SPONSOR</strong>
+                </div>
+                <p>This web site Sponsor by CCIT madam(django)</p>
+                <div  class="alert  colour_banner">
+                    <strong>LABELS</strong>
+                </div>
+                <a href="/page/it"><div type="button" class="btn btn-secondary btn-block my-1 btn-md">IT</div></a>
+                <a href="/page/webdevloper"><div type="button" class="btn btn-secondary my-1 btn-block btn-md">Web Developer</div></a>
+                <a href="/page/python"><div type="button" class="btn btn-secondary my-1 btn-block btn-md">Python</div></a>
+                <a href="/page/django"> <div type="button" class="btn btn-secondary my-1 btn-block btn-md">Django</div></a>
+                <a href="/page/gaming"> <div type="button" class="btn btn-secondary my-1 btn-block btn-md">Gaming</div></a><br>
+
+
+            </div>
+            <div class="col-sm-4">
+                <div class="row">
+                    <div class="col-sm-12 ">
+                        <div class="alert colour_banner">
+                            <strong>Gaming Related News Post</strong>
+                        </div>
+                        {% for k in news2|slice:10 %}
+                        <a href="{{k.get_absolute_url}}">
+                            <strong><p class="text-white">{{k.title}} </p></strong>
+                        </a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="raw">
+                    <div class="col-sm-12">
+                        <div  id="contact_me"  class="alert colour_banner">
+                            <strong> Contact Me</strong>
+                        </div>
+
+
+<!--                        Contact Me form fotter -->
+                        <form  method="POST">
+                            {% csrf_token %}
+                            <div class="form-group ">
+                                <label for="username">User Name:</label>
+                                <input type="text" class="form-control form-control-sm" id="username"
+                                       placeholder="Enter User Name" name="username" required>
+                            </div>
+                            <div class="form-group ">
+                                <label for="uemail">Email:</label>
+                                <input type="email" class="form-control form-control-sm" id="uemail"
+                                       placeholder="Example@gamil.com" name="uemail" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="umessage">Message:</label>
+                                <textarea name="umessage" id="umessage" class="form-control" rows='5' ></textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-info">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<script src="{% static 'js/javascript.js' %}"></script>
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<script src="{% static 'js/popper.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+</body>
+</html>

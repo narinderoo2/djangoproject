@@ -1,0 +1,34 @@
+{% extends 'linkfile.html' %}
+{% block title %} IT sector news{% endblock %}
+{% block page/itactive %} active {% endblock page/itactive %}
+{% block body %}
+
+<div class="col-sm-7">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="alert colour_banner">
+                <strong>IT Latest News</strong>
+            </div>
+            {% for k in it1|slice:5 %}
+            <div class=" text-center">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <img src="{{k.file_name.url}}" class="rounded" height="120" width="139" alt="Avatar">
+                    </div>
+                    <div class="col-sm-9 bg-light ">
+                        <a href="{{k.get_absolute_url}}"> <p>{{k.title}}</p></a>
+                        <p><small>{{k.post0|truncatechars:170}}</small></p>
+                        <span class="text-dark"><small>{{k.pub_date}}&nbsp;&nbsp;</small></span>
+                        <a href="{{k.get_absolute_url}}">
+                        <span class="text-dark"><small>continue reading..</small></span>
+                        </a>
+                    </div>
+                </div><br>
+            </div>
+
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

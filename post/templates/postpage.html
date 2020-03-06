@@ -1,0 +1,118 @@
+{% extends 'linkfile.html' %}
+{% block title %} {{page.title}} {% endblock %}
+{% load static %}
+{% block body %}
+
+<div class="col-sm-7">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="alert colour_banner">
+                <strong>{{post.heading0}}&nbsp;post </strong>
+            </div>
+            <div class="text-dark ">
+                <img src="{{post.file_name.url}}" class="rounded" height="305" width="100%" alt="Avatar">
+                <div class=" text-justify">
+                    <h4 class="text-capitalize  font-weight-bold"> {{post.title}}</h4>
+                    <p > {{post.post0}}</p>
+                    <h4 class="text-capitalize font-weight-bold"> {{post.heading1}}</h4>
+                    <p> {{post.post1}}</p>
+                </div>
+            </div>
+            <div class="container-fluid my-2">
+                <a href="#"><button type="button" class="btn btn-primary ">Share On Facebook&nbsp;<span class="badge badge-light">F</span></button></a>
+                <a href="#"><button type="button" class="btn btn-secondary ">Share On Instagram&nbsp;<span class="badge badge-light">T</span></button></a>
+                <a href="#"><button type="button" class="btn btn-info">Share On Twitter&nbsp;<span class="badge badge-light">I</span></button></a>
+                <a href="#"><button type="button" class="btn btn-danger ">Share On Gmail&nbsp;<span class="badge badge-light">G</span></button></a>
+            </div>
+            <div class="container-fluid">
+                <div class="alert colour_banner">
+                    <strong>Related Post</strong>
+                </div>
+
+
+<!--                relative post coloum and raw start-->
+                <div class="row">
+                    {% for i in post2|slice:3 %}
+                    <div class="col-md-4 mb-1 ">
+                            <img src="{{i.file_name.url}}"  height="125" width="235"class="img-circle"  alt="Avatar">
+                        <a href="{{k.get_absolute_url}}"><p class=" text-center bg-light text-body"><strong>{{i.title}} </strong></p></a>
+                    </div>
+                    {% endfor %}
+                </div>
+<!--                end relative post -->
+<!--                start comment -->
+
+                <!--                post comment starts -->
+                <h4 class="text-weight-solid">  Comments:&nbsp; {{post.comments.count}}</h4>
+                <div class="container">
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <textarea name="msg0" class="form-control" rows='5' ></textarea>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <label for="user_name">Enter Name:</label>
+                                    <input type="text" class="form-control form-control-sm" id="user_name"
+                                           placeholder="Enter User Name"   name="user_name">
+                                </div>
+                                <div class="col-sm-7">
+                                    <p> <small> </small></p>
+                                    <p> <small>It is impotent user name show with comment</small></p>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-info btn-sm mb-1">Submit</button>
+                    </form>
+                    <!--test whasapp-->
+                    {% for comment in comments %}
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="media border p-3">
+                                <div class="media-body">
+                                    <h4> {{ comment.msg|linebreaks }}</h4>
+                                    <p> <small> via {{ comment.user_name }} | {{comment.com_date|timesince}} ago
+                                        {% if comment.replies.count > 0 %}
+                                        {{comment.replies.count}} Comment{% if comment.replies.count > 1 %}s{% endif %} |
+                                        {% endif %} </small>
+                                        <a href="#" data-toggle="collapse" id="myBtn{{comment.id}}" data-target="#myModal{{comment.id}}">Reply</a>
+                                    </p>
+
+                                    <div class="media p-3">
+                                        <div class="media-body">
+                                            <div class="collapse"  id="myModal{{comment.id}}">
+                                                <h5>Replies</h5>
+                                                {% for reply in comment.replies.all %}
+                                                <strong>{{ reply.msg}}</strong>
+                                                <footer>via {{ reply.user_name}} | {{reply.com_date|timesince}} </footer><br>
+                                                {% endfor %}
+
+                                                <form method="POST" class="reply-form" style="width:50%; margin: auto;" id="#myModal{{ comment.id }}">
+                                                    {% csrf_token %}
+                                                    <div class="form-group">
+                                                        <input type="text" name="user_name" class="form-control" placeholder="username" value="" required><br>
+                                                        <textarea cols="50" rows="5" class="form-control" placeholder="your comment..." name="msg0" required></textarea>
+                                                        <!-- Hidden input for parent comment.id -->
+                                                        <input type="hidden" name="reply_id" value="{{ comment.id }}">
+                                                        <button type="submit" class="save btn btn-default btn-block">Reply</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% empty %}
+
+                    <p>No comments here yet :(</p>
+
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

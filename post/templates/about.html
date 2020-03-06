@@ -1,0 +1,81 @@
+{% extends 'linkfile.html' %}
+{% block title %} rtnews center {% endblock %}
+{% block body %}
+{% load static %}
+
+<div class="col-sm-7">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="alert colour_banner">
+                <strong> About page</strong>
+            </div>
+            <div class="container-fluid mp-3">
+                <img src="{% static 'imge/3.jpg' %}" alt="nature picture " width="100%" height="220" class="rounded">
+            </div>
+            <h2> How to write meta descriptions for SEO (with good and bad examples)</h2>
+            <p>What is a meta description? How do you write one? Why are meta descriptions important? Do they actually help with search engine optimisation? What are some good and bad examples?
+
+                Following on from our incredibly popular guide 22 SEO essentials for optimising your site, I thought I’d follow up the advice on meta tags and answer all of the above questions.
+
+                If you just want a quick guide to optimising meta descriptions, click here to jump to the checklist section.
+
+
+                SEO for Website Redesign and MigrationEver-Changing GoalPosts - SEO Challenges and How to Overcome Them7 Unexpected PPC + SEO Strategies for Growth MarketingAll About Click Fraud and How You Can Block It
+                What are meta tags
+                As Kristine Schachinger described in our previous guide to meta tags back in 2012, meta tags are HTML elements that provide information about a webpage for search engines and website visitors.
+            </p>
+            <div id="accordion">
+                <div class="card">
+                    <div class="card-header">
+                        <a class="card-link" data-toggle="collapse" href="#collapseOne">
+                            How to Write Meta Descriptions that Drive Traffic and Conversions
+                        </a>
+                    </div>
+                    <div id="collapseOne" class="collapse show" data-parent="#accordion">
+                        <div class="card-body">
+                            You’re working hard to market your company.
+                            You’re writing your product descriptions, optimizing your images, and mastering most of
+                            the other elements of effective search engine optimization (SEO).
+
+                            Still, if you’re like many business owners, one aspect of SEO could
+                            be giving you trouble: meta descriptions.
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <a class="collapsed card-link" data-toggle="collapse" href="#collapseTwo">
+                            What is a meta description?                        </a>
+                    </div>
+                    <div id="collapseTwo" class="collapse" data-parent="#accordion">
+                        <div class="card-body">
+                            A meta description is meta tag that acts as a 155-160 characters summary that describes the content of a web page.
+
+                            Search engines show it in search results when the meta description also includes the keywords
+                            being searched. Unlike the page title, meta descriptions are not a ranking factor, but they do entice users to click
+                            through to a page and are part of effective on page SEO. You'll see them in a page's code as  </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <a class="collapsed card-link" data-toggle="collapse" href="#collapseThree">
+                            Dissecting a home page meta description
+                        </a>
+                    </div>
+                    <div id="collapseThree" class="collapse" data-parent="#accordion">
+                        <div class="card-body">
+                            Reading other people’s meta descriptions will make the process look deceptively simple, but that simplicity is the very thing that makes them so hard to write. The rough 155-character limit means the meta description can’t be much longer than a tweet.
+
+                            The good descriptions give you a brief overview of what the site is about, as well as a compelling reason to click the title tag. It all happens so quickly and painlessly, many searchers won’t even notice themselves making a decision.                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+        </div>
+
+
+{% endblock %}
