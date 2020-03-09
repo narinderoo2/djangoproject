@@ -17,6 +17,7 @@ def home(request):
     news1 = News.objects.all().order_by('-news_id')[4:10]
     news2 = News.objects.all()
 
+
     if request.method == 'POST':
         username = request.POST['username']
         uemail= request.POST['uemail']
@@ -27,7 +28,8 @@ def home(request):
 
     add1 = {'news': news,
             'news1':news1,
-            'news2':news2}
+            'news2':news2,
+            }
     return render(request, 'home.html',add1)
 
 
@@ -42,11 +44,22 @@ def contact(request):
         repassword= request.POST['repassword']
         uphone= request.POST['uphone']
 
-        # contact1 = User.objects.create_user(username=username, password=upassword, email=uemail)
-        # Any user submit info. admin panel User, so this method can use it
+        if not username.isalnum():
+            messages.error(request,"not opertor are use")
+            return redirect('contact')
 
-        contact1 = Contact(Name=username,Password=upassword, Email=uemail,Re_Password=repassword,Phone=uphone)
+        if upassword != repassword:
+            messages.error(request,"Passwords do not match")
+            return redirect('contact')
+
+        contact1 = User.objects.create_user(username=username, password=upassword, email=uemail)
+        # Any user submit info. admin panel User, so this method can use it
         contact1.save()
+
+        contact2 = Contact(Name=username,Password=upassword, Email=uemail,Re_Password=repassword,Phone=uphone)
+        # all data save in contact
+        contact2.save()
+
         messages.success(request, 'you are now registered & can login')
         return redirect('login')
     return render(request, 'contact.html')
