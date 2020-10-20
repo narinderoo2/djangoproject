@@ -67,7 +67,7 @@ def contact(request):
 
 #===============================Log In  Function ========================================
 def login(request):
-    if request.method == 'POST':
+    if request.method == 'POST': 
         username = request.POST['uname']
         password= request.POST['upassword']
         user=auth.authenticate(username=username, password=password)
@@ -80,7 +80,7 @@ def login(request):
             return redirect('login')
 
     return render(request, 'login.html')
-
+ 
 
 #===============================Log Out Function { not create html page } ========================================
 
@@ -131,8 +131,8 @@ def postpage(request, title ):
     comments = Comment.objects.filter(post_id=post,  reply=None)
     if request.method == "POST":
         msg1 = request.POST['msg0']
-        msg_name = request.POST['user_name']
         com_id = request.POST.get('reply_id')
+        msg_name = request.POST['user_name']
         comment_as = None
         if com_id:
             comment_as = Comment.objects.get(id = com_id)
