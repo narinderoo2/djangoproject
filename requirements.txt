@@ -1,6 +1,6 @@
 asgiref==3.2.3
 Click==7.0
-Django==3.0.3
+Django==3.1.13
 django-bootstrap-static==4.2.1
 Flask==1.1.1
 future==0.18.2
